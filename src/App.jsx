@@ -1,9 +1,14 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+
+// components
 import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
 import MainPage from './pages/MainPage';
 import NotFoundPage from './pages/NotFoundPage';
+
+// styles
+import "./styles/reset.scss";
 
 export default function App() {
   return (
