@@ -9,7 +9,7 @@ export default function App() {
   return (
     <>
       <Routes>
-        {/* 요청 url 수정 */}
+        {/* 요청 url 수정 예정 */}
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/signin" element={<SigninPage />} />
