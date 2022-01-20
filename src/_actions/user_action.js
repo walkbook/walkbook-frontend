@@ -9,6 +9,13 @@ export function setToken(token) {
   };
 }
 
+export function setLocation(location) {
+  return {
+    type: 'setLocation',
+    payload: location,
+  }
+}
+
 export function setSigninUser(userData) {
   return {
     type: 'setSigninData',
@@ -36,12 +43,8 @@ export function requestSignin(signinData) {
       return;
     }
     
-    // 로그인 시 메인 페이지로 꽂아주기
-    // window.location.href = '/';
-
     console.log('확인용 콘솔', resSigninData);
 
-    // Q. 유저 부분, 필요할까?
     try { 
       dispatch(setSigninUser(userData));
     } 
@@ -59,26 +62,33 @@ export function requestSignin(signinData) {
     catch(err) {
       console.log('확인용 콘솔: 로그인 시 토큰 저장 에러', err);
     }
+
+    // 로그인 시 메인 페이지로 꽂아주기
+    window.location.href = '/';
   }
 } 
 
-export function requstSignup(signupData) {
+// signup
+export function requestSignup(signupData) {
   return async (dispatch) => {
-    const userData = await postSignup(signupData);
+    const { username, password } = signupData;
+    const resSignupData = await postSignup(signupData);
 
-    if (!userData) {
+    if (!resSignupData) {
+      alert('다시 시도해 주세요.');
       console.log('확인용 콘솔: 회원가입 응답 없음');
       return;
     }
 
-    // 회원가입 시 로그인 페이지로 꽂아주기
-    window.location.href = '/signin';
+    console.log('확인용 콘솔', resSignupData);
 
     try {
-      alert('회원가입에 성공했습니다! \n로그인 후 이용해주세요.');
+      alert('회원가입에 성공했습니다!');
     }
     catch(err) {
       alert('회원가입에 실패했습니다.', err);
     }
+
+    dispatch(requestSignin({ username, password }));
   }
 }

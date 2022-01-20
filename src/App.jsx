@@ -5,7 +5,7 @@ import { setToken } from './_actions/user_action';
 import { loadItem } from './_services/storage';
 
 // components
-// import SignupPage from './pages/SignupPage';
+import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
 import MainPage from './pages/MainPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -25,7 +25,7 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        {/* <Route path="/signup" element={<SignupPage />} /> */}
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>

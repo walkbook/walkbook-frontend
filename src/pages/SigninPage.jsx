@@ -13,6 +13,7 @@ export default function SigninPage() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  // 토큰 필요할 때마다 가져옴
   const token = useSelector(get('token'));
 
   const handleChangeUsername = (event) => {
