@@ -8,10 +8,15 @@ import { loadItem } from './_services/storage';
 import SignupPage from './pages/SignupPage';
 import SigninPage from './pages/SigninPage';
 import MainPage from './pages/MainPage';
+import EnrollNewPostPage from './pages/EnrollNewPostPage';
+import MyWalkbookPage from './pages/MyWalkbookPage';
+import SearchByMapPage from './pages/SearchByMapPage';
+import SearchByPostPage from './pages/SearchByPostPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // styles
 import "./styles/reset.scss";
+import "./styles/sample.scss";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -27,6 +32,10 @@ export default function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/signin" element={<SigninPage />} />
+        <Route path="/newpost" element={<EnrollNewPostPage />} />
+        <Route path="/mywalkbook" element={<MyWalkbookPage />} />
+        <Route path="/searchmap" element={<SearchByMapPage />} />
+        <Route path="/searchpost" element={<SearchByPostPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </>

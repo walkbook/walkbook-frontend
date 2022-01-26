@@ -1,15 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 export default function MainPage() {
   return (
     <>
-      <p>WalkBook : 메인 페이지</p>
-      <Link to="/signin">로그인</Link>
-
-      <br />
-
-      <Link to="/signup">회원가입</Link>
+      <NavBar />
+      <div className='container_sample'>환영합니다 워크북입니당</div>
     </>
   );
 }

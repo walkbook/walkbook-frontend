@@ -26,6 +26,7 @@ export default function SearchAddress() {
       <button
         type="button"
         onClick={handleClickOpenSearchAddress}
+        className='sample_button'
       >
         주소 검색
       </button>
@@ -41,6 +42,7 @@ export default function SearchAddress() {
             <button 
               type="button"
               onClick={handleClickCloseSearchAddress}
+              className='sample_button'
             >
               닫기
             </button>

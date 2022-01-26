@@ -210,6 +210,7 @@ export default function SigninContainer() {
       <button 
         type="submit"
         onClick={handleSubmit}
+        className='sample_button'
       >
         SIGN UP
       </button>

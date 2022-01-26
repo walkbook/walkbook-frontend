@@ -5,8 +5,9 @@ export default function SignoutContainer({ onClick }) {
     <button
       type="submit"
       onClick={onClick}
+      className='navbar_3'
     >
-      SIGN OUT
+      로그아웃
     </button>
   )
 }

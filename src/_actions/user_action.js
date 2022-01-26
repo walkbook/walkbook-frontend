@@ -25,6 +25,7 @@ export function setSigninUser(userData) {
 
 export function signout() {
   clearItem('token');
+  window.location.href = '/';
   return {
     type: 'signout',
   }
