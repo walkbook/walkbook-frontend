@@ -71,6 +71,7 @@ export default function EnrollNewPost() {
     )) {
       return;
     }
+    
     const requestBody = {
       title,
       description,

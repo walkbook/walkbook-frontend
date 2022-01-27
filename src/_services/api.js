@@ -24,7 +24,7 @@ export async function postSignup(signupData) {
 
 export async function postEnrollPost(enrollPostData) {
   try {
-    const url = 'api/post/create';
+    const url = '/api/post/create';
     const res = await axios.post(url, enrollPostData);
     return res.data;
   }

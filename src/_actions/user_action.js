@@ -93,7 +93,8 @@ export function requestSignup(signupData) {
 // 게시글 등록
 export function requestEnrollPost(enrollPostData) {
   return async (dispatch) => {
-    const { postId } = await postEnrollPost(enrollPostData);
+    const postData = await postEnrollPost(enrollPostData);
+    const { postId } = postData.data;
 
     if (!postId) {
       alert('다시 시도해 주세요.');
@@ -109,6 +110,6 @@ export function requestEnrollPost(enrollPostData) {
     }
 
     // 후에 api/post/{postId}로 가게 하기 
-    // dispatch(requestGetPost)
+    // dispatch(requestGetPost());
   }
 }
