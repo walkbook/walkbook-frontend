@@ -21,3 +21,14 @@ export async function postSignup(signupData) {
     alert(err.response.data.msg);
   }
 }
+
+export async function postEnrollPost(enrollPostData) {
+  try {
+    const url = 'api/post/create';
+    const res = await axios.post(url, enrollPostData);
+    return res.data;
+  }
+  catch(err) {
+    alert(err.response.data.msg);
+  }
+}

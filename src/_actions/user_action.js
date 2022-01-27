@@ -1,5 +1,5 @@
 import { postSignin, postSignup } from '../_services/api';
-import { clearItem, saveItem } from '../_services/storage';
+import { clearItem, saveItem, saveObjItem } from '../_services/storage';
 
 // signin
 export function setToken(token) {
@@ -25,6 +25,7 @@ export function setSigninUser(userData) {
 
 export function signout() {
   clearItem('token');
+  clearItem('userData');
   window.location.href = '/';
   return {
     type: 'signout',
@@ -37,17 +38,15 @@ export function requestSignin(signinData) {
     const resSigninData = await postSignin(signinData);
     const userData = resSigninData.data;
     const { nickname } = userData;
-
     
     if (!resSigninData) {
       console.log('확인용 콘솔: 로그인 응답 없음');
       return;
     }
     
-    console.log('확인용 콘솔', resSigninData);
-
     try { 
       dispatch(setSigninUser(userData));
+      saveObjItem('userData', userData);
     } 
     catch(err) {
       console.log('확인용 콘솔: 로그인 시 유저정보 저장 에러', err);
@@ -55,7 +54,6 @@ export function requestSignin(signinData) {
 
     try { 
       const token = resSigninData.token;
-      console.log('확인용 콘솔', token);
       dispatch(setToken(token));
       saveItem('token', token);
       alert(`${nickname}님! 환영합니다, 워크북입니다!`);
@@ -64,7 +62,7 @@ export function requestSignin(signinData) {
       console.log('확인용 콘솔: 로그인 시 토큰 저장 에러', err);
     }
 
-    // 로그인 시 메인 페이지로 꽂아주기
+    // 로그인 시 메인 페이지로
     window.location.href = '/';
   }
 } 
@@ -81,8 +79,6 @@ export function requestSignup(signupData) {
       return;
     }
 
-    console.log('확인용 콘솔', resSignupData);
-
     try {
       alert('회원가입에 성공했습니다!');
     }
@@ -92,4 +88,9 @@ export function requestSignup(signupData) {
 
     dispatch(requestSignin({ username, password }));
   }
+}
+
+// 게시글 등록
+export function requestEnrollPost(enrollPostData) {
+
 }

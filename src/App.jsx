@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setToken } from './_actions/user_action';
-import { loadItem } from './_services/storage';
+import { setToken, setSigninUser } from './_actions/user_action';
+import { loadItem, loadObjItem } from './_services/storage';
 
 // components
 import SignupPage from './pages/SignupPage';
@@ -21,9 +21,13 @@ import "./styles/sample.scss";
 export default function App() {
   const dispatch = useDispatch();
   const token = loadItem('token');
+  const userData = loadObjItem('userData');
 
   if (token) {
     dispatch(setToken(token));
+  }
+  if (userData) {
+    dispatch(setSigninUser(userData));
   }
   
   return (

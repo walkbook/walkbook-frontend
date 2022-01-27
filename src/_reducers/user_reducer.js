@@ -1,4 +1,8 @@
-export default function reducer(state = {}, action) {
+const initialState = {
+  name: 'yeji',
+}
+
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case 'setToken':
       return { 
