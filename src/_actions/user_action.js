@@ -1,4 +1,4 @@
-import { postSignin, postSignup } from '../_services/api';
+import { postEnrollPost, postSignin, postSignup } from '../_services/api';
 import { clearItem, saveItem, saveObjItem } from '../_services/storage';
 
 // signin
@@ -92,5 +92,23 @@ export function requestSignup(signupData) {
 
 // 게시글 등록
 export function requestEnrollPost(enrollPostData) {
+  return async (dispatch) => {
+    const { postId } = await postEnrollPost(enrollPostData);
 
+    if (!postId) {
+      alert('다시 시도해 주세요.');
+      console.log('확인용 콘솔: 게시글 등록 실패');
+      return;
+    }
+
+    try {
+      alert('게시글 등록에 성공했습니다!');
+    }
+    catch(err) {
+      alert('게시글 등록에 실패했습니다', err);
+    }
+
+    // 후에 api/post/{postId}로 가게 하기 
+    // dispatch(requestGetPost)
+  }
 }
