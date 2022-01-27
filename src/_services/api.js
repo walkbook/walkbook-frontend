@@ -32,3 +32,14 @@ export async function postEnrollPost(enrollPostData) {
     alert(err.response.data.msg);
   }
 }
+
+export async function getPost(postId) {
+  try {
+    const url = `/api/post/${postId}`;
+    const res = await axios.get(url);
+    return res.data;
+  }
+  catch(err) {
+    alert(err.response.data.msg);
+  }
+}
