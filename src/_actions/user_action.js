@@ -26,6 +26,7 @@ export function setSigninUser(userData) {
 export function signout() {
   clearItem('token');
   clearItem('userData');
+  clearItem('userId');
   window.location.href = '/';
   return {
     type: 'signout',
@@ -95,8 +96,8 @@ export function requestGetPost(postId) {
   return async (dispatch) => {
     const postData = await getPost(postId);
     const getpostData = postData.data;
-
-    // authorId와 userId가 같으면 수정할 수 있게 (컴포넌트 측에서)
+    
+    // authorId와 userId가 같으면 수정, 삭제할 수 있게 (컴포넌트 측에서)
   }
 }
 
@@ -104,7 +105,7 @@ export function requestGetPost(postId) {
 export function requestEnrollPost(enrollPostData) {
   return async (dispatch) => {
     const postData = await postEnrollPost(enrollPostData);
-    const { postId } = postData.data;
+    const { postId, authorId } = postData.data;
 
     if (!postId) {
       alert('다시 시도해 주세요.');
@@ -113,6 +114,7 @@ export function requestEnrollPost(enrollPostData) {
     }
 
     try {
+      saveItem('userId', authorId);
       alert('게시글 등록에 성공했습니다!');
       console.log(postData);
     }
@@ -120,9 +122,6 @@ export function requestEnrollPost(enrollPostData) {
       alert('게시글 등록에 실패했습니다', err);
     }
 
-
-    // dispatch(setSigninUser(userData));
-    // 와 같은건 해줄게 없나? 
     // 후에 api/post/{postId}로 가게 하기 
     // dispatch(requestGetPost(postId));
   }

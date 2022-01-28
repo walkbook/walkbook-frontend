@@ -86,7 +86,7 @@ export default function EnrollNewPost() {
   return (
     <>
       <div className='sample_title'>산책로 등록</div>
-      
+
       <label>작성자</label>
       <input 
         type="text" 
