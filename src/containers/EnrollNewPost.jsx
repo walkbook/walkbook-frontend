@@ -86,8 +86,7 @@ export default function EnrollNewPost() {
   return (
     <>
       <div className='sample_title'>산책로 등록</div>
-      <div className='sample_announce'>안내문</div>
-      <div className='sample_map'>맵</div>
+      
       <label>작성자</label>
       <input 
         type="text" 
