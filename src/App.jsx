@@ -10,6 +10,7 @@ import MyWalkbookPage from './pages/MyWalkbookPage';
 import SearchByMapPage from './pages/SearchByMapPage';
 import SearchByPostPage from './pages/SearchByPostPage';
 import ShowDetailPostPage from './pages/ShowDetailPostPage';
+import EditDetailPostPage from './pages/EditDetailPostPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // styles
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/searchmap" element={<SearchByMapPage />} />
         <Route path="/searchpost" element={<SearchByPostPage />} />
         <Route path="/post/:postId" element={<ShowDetailPostPage />} />
+        <Route path="/post/:postId/edit" element={<EditDetailPostPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </>
