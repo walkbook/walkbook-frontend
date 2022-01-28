@@ -1,4 +1,4 @@
-import { postEnrollPost, postSignin, postSignup } from '../_services/api';
+import { getPost, postEnrollPost, postSignin, postSignup } from '../_services/api';
 import { clearItem, saveItem, saveObjItem } from '../_services/storage';
 
 // signin
@@ -90,6 +90,16 @@ export function requestSignup(signupData) {
   }
 }
 
+// 게시글 하나 보기
+export function requestGetPost(postId) {
+  return async (dispatch) => {
+    const postData = await getPost(postId);
+    const getpostData = postData.data;
+
+    // authorId와 userId가 같으면 수정할 수 있게 (컴포넌트 측에서)
+  }
+}
+
 // 게시글 등록
 export function requestEnrollPost(enrollPostData) {
   return async (dispatch) => {
@@ -104,12 +114,16 @@ export function requestEnrollPost(enrollPostData) {
 
     try {
       alert('게시글 등록에 성공했습니다!');
+      console.log(postData);
     }
     catch(err) {
       alert('게시글 등록에 실패했습니다', err);
     }
 
+
+    // dispatch(setSigninUser(userData));
+    // 와 같은건 해줄게 없나? 
     // 후에 api/post/{postId}로 가게 하기 
-    // dispatch(requestGetPost());
+    // dispatch(requestGetPost(postId));
   }
 }

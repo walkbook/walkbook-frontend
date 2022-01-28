@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { loadItem } from './storage';
 
 export async function postSignin(signinData) {
   try {
@@ -23,9 +24,15 @@ export async function postSignup(signupData) {
 }
 
 export async function postEnrollPost(enrollPostData) {
+  const token = loadItem('token');
+
   try {
     const url = '/api/post/create';
-    const res = await axios.post(url, enrollPostData);
+    const res = await axios.post(url, enrollPostData, {
+      headers: {
+        'X-AUTH-TOKEN': token,
+      }
+    });
     return res.data;
   }
   catch(err) {
