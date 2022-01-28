@@ -22,6 +22,12 @@ export default function reducer(state = initialState, action) {
         userData: action.payload,
       };
 
+    case 'setPostInfo':
+      return {
+        ...state,
+        getPostData: action.payload,
+      };
+
     case 'signout':
       return {
         ...state,

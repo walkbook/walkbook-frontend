@@ -23,6 +23,13 @@ export function setSigninUser(userData) {
   }
 }
 
+export function setPostInfo(getPostData) {
+  return {
+    type: 'setPostInfo',
+    payload: getPostData,
+  }
+}
+
 export function signout() {
   clearItem('token');
   clearItem('userData');
@@ -95,8 +102,9 @@ export function requestSignup(signupData) {
 export function requestGetPost(postId) {
   return async (dispatch) => {
     const postData = await getPost(postId);
-    const getpostData = postData.data;
-    
+    const getPostData = postData.data;
+    dispatch(setPostInfo(getPostData));
+
     // authorId와 userId가 같으면 수정, 삭제할 수 있게 (컴포넌트 측에서)
   }
 }
@@ -122,7 +130,7 @@ export function requestEnrollPost(enrollPostData) {
       alert('게시글 등록에 실패했습니다', err);
     }
 
-    // 후에 api/post/{postId}로 가게 하기 
-    // dispatch(requestGetPost(postId));
+    window.location.href = `/post/${postId}`;
+    dispatch(requestGetPost(postId));
   }
 }
