@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { get } from '../utils/utils';
+import { useDispatch } from 'react-redux';
 import { requestEnrollPost } from '../_actions/user_action';
+import { loadItem, loadObjItem } from '../_services/storage';
 
 export default function EnrollNewPost() {
   const dispatch = useDispatch();
-  const { nickname } = useSelector(get('userData'));
 
   // 인풋값들 상태관리
   const [title, setTitle] = useState('');
@@ -13,6 +12,15 @@ export default function EnrollNewPost() {
   const [startLocation, setStartLocation] = useState('');
   const [finishLocation, setFinishLocation] = useState('');
   const [tmi, setTmi] = useState('');
+
+  const token = loadItem('token');
+  
+  if (!token) {
+    window.location.href = '/signin';
+    return;
+  }
+
+  const { nickname } = loadObjItem('userData');
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
