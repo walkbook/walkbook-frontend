@@ -45,7 +45,7 @@ export function requestSignin(signinData) {
     // resSigninData <- res.data (객체) (keys: data, msg, success, token)
     const resSigninData = await postSignin(signinData);
     const userData = resSigninData.data;
-    const { nickname } = userData;
+    const { userId, nickname } = userData;
     
     if (!resSigninData) {
       console.log('확인용 콘솔: 로그인 응답 없음');
@@ -54,6 +54,7 @@ export function requestSignin(signinData) {
     
     try { 
       dispatch(setSigninUser(userData));
+      saveItem('userId', userId);
       saveObjItem('userData', userData);
     } 
     catch(err) {
@@ -113,7 +114,7 @@ export function requestGetPost(postId) {
 export function requestEnrollPost(enrollPostData) {
   return async (dispatch) => {
     const postData = await postEnrollPost(enrollPostData);
-    const { postId, authorId } = postData.data;
+    const { postId } = postData.data;
 
     if (!postId) {
       alert('다시 시도해 주세요.');
@@ -122,9 +123,7 @@ export function requestEnrollPost(enrollPostData) {
     }
 
     try {
-      saveItem('userId', authorId);
       alert('게시글 등록에 성공했습니다!');
-      console.log(postData);
     }
     catch(err) {
       alert('게시글 등록에 실패했습니다', err);
