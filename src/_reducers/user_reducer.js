@@ -28,6 +28,12 @@ export default function reducer(state = initialState, action) {
         getPostData: action.payload,
       };
 
+    case 'setPageContent':
+      return {
+        ...state,
+        pageContent: action.payload,
+      }
+
     case 'signout':
       return {
         ...state,

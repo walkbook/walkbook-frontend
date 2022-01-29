@@ -4,7 +4,8 @@ import {
   postSignin,
   postSignup,
   putEditPost,
-  deletePost
+  deletePost,
+  getPostPage
 } from '../_services/api';
 import { clearItem, saveItem, saveObjItem } from '../_services/storage';
 
@@ -34,6 +35,13 @@ export function setPostInfo(getPostData) {
   return {
     type: 'setPostInfo',
     payload: getPostData,
+  }
+}
+
+export function setPageContent(pageContent) {
+  return {
+    type: 'setPageContent',
+    payload: pageContent,
   }
 }
 
@@ -162,5 +170,13 @@ export function requestDeletePost(postId) {
     if (success) {
       alert('해당 게시글을 삭제했습니다.');
     }
+  }
+}
+
+// 포스트 페이지 불러오기
+export function requestPostPage(page, size, sort) {
+  return async (dispatch) => {
+    const pageContent = await getPostPage(page, size, sort);
+    dispatch(setPageContent(pageContent));
   }
 }
