@@ -65,7 +65,38 @@
   margin: 10px;
 }
 
+.sample_card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 250px;
+  height: 130px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.sample_card_title {
+  display: flex;
+  justify-content: space-between;
+  height: 20px;
+  border-bottom: 1px solid black;
+  font-weight: 600;
+}
+
+.sample_card_content {
+  display: flex;
+  padding-top: 10px;
+  color: green;
+}
+
+.sample_card_content_elem {
+  padding-left: 10px;
+  color:rgb(47, 47, 47);
+}
+
 a {
   text-decoration: none;
   color:rgb(47, 47, 47)
 }
+
