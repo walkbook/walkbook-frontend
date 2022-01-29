@@ -19,16 +19,21 @@ export default function PostcardList() {
   }
 
   return (
-    <>
-      {pageContent.map((post) => (
-        <Postcard
-          key={post.postId}
-          postId={post.postId}
-          title={post.title}
-          authorName={post.authorName}
-          description={post.description}
-        />
-      ))}
-    </>
+    <div className="sample_postcard_list">
+      {pageContent.length !== 0 ? (
+        pageContent.map((post) => (
+          <Postcard
+            key={post.postId}
+            postId={post.postId}
+            title={post.title}
+            authorName={post.authorName}
+            description={post.description}
+          />
+        ))) : (
+          <>
+            <div className='sample_title'>게시글이 없네요! 등록해주세요 :)</div>
+          </>
+      )}
+    </div>
   )
 }
