@@ -67,3 +67,20 @@ export async function putEditPost(editPostData, postId) {
     alert(err.response.data.msg);
   }
 }
+
+export async function deletePost(postId) {
+  const token = loadItem('token');
+
+  try {
+    const url = `/api/post/${postId}/delete`;
+    const res = await axios.delete(url, {
+      headers: {
+        'X-AUTH-TOKEN': token,
+      }
+    });
+    return res.data;
+  }
+  catch(err) {
+    alert(err.response.data.msg);
+  }
+}

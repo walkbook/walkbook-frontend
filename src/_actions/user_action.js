@@ -156,9 +156,9 @@ export function requestEditPost(editPostData, postId) {
 // 게시글 삭제
 export function requestDeletePost(postId) {
   return async (dispatch) => {
-    const deleteData = await deletePost(postId);
-    const { success } = deleteData.data;
+    const { success } = await deletePost(postId);
 
+    console.log(success);
     if (success) {
       alert('해당 게시글을 삭제했습니다.');
     }
