@@ -20,13 +20,11 @@ export default function ShowDetailPost({ postId }) {
     <div>
       {Number(data.authorId) === Number(userId) ? (
         <>
-          <div>안녕</div>
           <Link to="/post/:postId/edit">수정</Link>
           {/* <Link to="/post/:postId/delete">삭제</Link> */}
         </>
       ) : (
         <>
-          <div>바위</div>
         </>
       )}
       <div>
