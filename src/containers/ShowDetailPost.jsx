@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { requestGetPost } from '../_actions/user_action';
 import { get } from '../utils/utils';
+import { loadItem } from '../_services/storage';
+import { Link } from 'react-router-dom';
 
 export default function ShowDetailPost({ postId }) {
   const dispatch = useDispatch();
   dispatch(requestGetPost(postId));
   const data = useSelector(get('getPostData'));
+  const userId = loadItem('userId');
 
   if (!data) {
     return (
@@ -15,6 +18,17 @@ export default function ShowDetailPost({ postId }) {
 
   return (
     <div>
+      {Number(data.authorId) === Number(userId) ? (
+        <>
+          <div>안녕</div>
+          <Link to="/post/:postId/edit">수정</Link>
+          {/* <Link to="/post/:postId/delete">삭제</Link> */}
+        </>
+      ) : (
+        <>
+          <div>바위</div>
+        </>
+      )}
       <div>
         <h1>{data.title}</h1>
         <h5>{data.des}</h5>
