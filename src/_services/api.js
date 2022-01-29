@@ -84,3 +84,14 @@ export async function deletePost(postId) {
     alert(err.response.data.msg);
   }
 }
+
+export async function getPostPage(page, size, sort) {
+  try {
+    const url = `/api/post/page?page=${page}&size=${size}&sort=${sort}`;
+    const res = await axios.get(url);
+    return res.data.content;
+  }
+  catch(err) {
+    alert(err.response.data.msg);
+  }
+} 
