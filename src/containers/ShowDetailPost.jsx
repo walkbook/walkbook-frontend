@@ -21,11 +21,17 @@ export default function ShowDetailPost({ postId }) {
     navigate(`/post/${postId}/edit`);
   }
 
+  const handleDelete = () => {
+    dispatch(requestDeletePost(postId));
+    navigate(`/searchpost`);
+  }
+
   return (
     <div>
       {Number(data.authorId) === Number(userId) ? (
         <>
           <button type="button" onClick={handleEdit}>수정</button>
+          <button type="button" onClick={handleDelete}>삭제</button>
         </>
       ) : (
         <>
