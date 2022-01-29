@@ -33,8 +33,8 @@ export default function ShowDetailPost({ postId }) {
     <div>
       {Number(data.authorId) === Number(userId) ? (
         <>
-          <button type="button" onClick={handleEdit}>수정</button>
-          <button type="button" onClick={handleDelete}>삭제</button>
+          <button type="button" onClick={handleEdit} className='sample_button'>수정</button>
+          <button type="button" onClick={handleDelete} className='sample_button'>삭제</button>
         </>
       ) : (
         <>
