@@ -1,4 +1,10 @@
-import { getPost, postEnrollPost, postSignin, postSignup } from '../_services/api';
+import {
+  getPost,
+  postEnrollPost,
+  postSignin,
+  postSignup,
+  putEditPost 
+} from '../_services/api';
 import { clearItem, saveItem, saveObjItem } from '../_services/storage';
 
 // signin
@@ -105,8 +111,6 @@ export function requestGetPost(postId) {
     const postData = await getPost(postId);
     const getPostData = postData.data;
     dispatch(setPostInfo(getPostData));
-
-    // authorId와 userId가 같으면 수정, 삭제할 수 있게 (컴포넌트 측에서)
   }
 }
 
@@ -128,6 +132,16 @@ export function requestEnrollPost(enrollPostData) {
     catch(err) {
       alert('게시글 등록에 실패했습니다', err);
     }
+
+    window.location.href = `/post/${postId}`;
+    dispatch(requestGetPost(postId));
+  }
+}
+
+export function requestEditPost(editPostData) {
+  return async (dispatch) => {
+    const editData = await putEditPost(editPostData);
+    const { postId } = editData.data;
 
     window.location.href = `/post/${postId}`;
     dispatch(requestGetPost(postId));
