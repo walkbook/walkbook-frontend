@@ -55,7 +55,7 @@ export async function putEditPost(editPostData, postId) {
   const token = loadItem('token');
 
   try {
-    const url = `api/post/${postId}/edit`;
+    const url = `/api/post/${postId}/edit`;
     const res = await axios.put(url, editPostData, {
       headers: {
         'X-AUTH-TOKEN': token,

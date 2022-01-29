@@ -10,11 +10,11 @@ export default function EditDetailPost({ postId }) {
   const data = useSelector(get('getPostData'));
   const userId = loadItem('userId');
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [startLocation, setStartLocation] = useState('');
-  const [finishLocation, setFinishLocation] = useState('');
-  const [tmi, setTmi] = useState('');
+  const [title, setTitle] = useState(data.title || '');
+  const [description, setDescription] = useState(data.description || '');
+  const [startLocation, setStartLocation] = useState(data.startLocation || '');
+  const [finishLocation, setFinishLocation] = useState(data.finishLocation || '');
+  const [tmi, setTmi] = useState(data.tmi || '');
 
   if (!data) {
     return (
@@ -22,7 +22,7 @@ export default function EditDetailPost({ postId }) {
     );
   }
 
-  if (Number(data.authorId) === Number(userId)) {
+  if (Number(data.authorId) !== Number(userId)) {
     alert('접근 권한이 없습니다.')
     window.location.href = '/';
     return;
@@ -50,7 +50,7 @@ export default function EditDetailPost({ postId }) {
     setTmi(event.target.value);
   };
 
-  const validateEnrollPost = (
+  const validateEditPost = (
     title,
     description,
     startLocation,
@@ -78,7 +78,7 @@ export default function EditDetailPost({ postId }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!validateEnrollPost(
+    if (!validateEditPost(
       title,
       description,
       startLocation,
@@ -105,7 +105,7 @@ export default function EditDetailPost({ postId }) {
       <label>작성자</label>
       <input 
         type="text" 
-        value={nickname || ''}
+        value={nickname}
         readOnly
       />
 
@@ -114,7 +114,7 @@ export default function EditDetailPost({ postId }) {
       <label>산책로 이름</label>
       <input 
         type="text" 
-        value={title || data.title}
+        value={title}
         placeholder="산책로의 특징을 담은 이름을 입력해주세요." 
         onChange={handleChangeTitle}
       />
@@ -124,7 +124,7 @@ export default function EditDetailPost({ postId }) {
       <label>산책로 한 줄 소개</label>
       <input 
         type="text" 
-        value={description || data.description}
+        value={description}
         placeholder="해당 산책로의 특징을 소개해주세요."
         onChange={handleChangeDescription}
       />
@@ -134,7 +134,7 @@ export default function EditDetailPost({ postId }) {
       <label>출발위치</label>
       <input 
         type="text" 
-        value={startLocation || data.startLocation}
+        value={startLocation}
         placeholder="출발 위치를 입력해주세요." 
         onChange={handleChangeStartLocation}
       />
@@ -144,7 +144,7 @@ export default function EditDetailPost({ postId }) {
       <label>도착위치</label>
       <input 
         type="text" 
-        value={finishLocation || data.finishLocation}
+        value={finishLocation}
         placeholder="도착 위치를 입력해주세요." 
         onChange={handleChangeFinishLocation}
       />
@@ -154,7 +154,7 @@ export default function EditDetailPost({ postId }) {
       <label>TMI</label>
       <input 
         type="text" 
-        value={tmi || data.tmi}
+        value={tmi}
         placeholder="TMI를 입력해주세요."
         onChange={handleChangeTmi}
       />

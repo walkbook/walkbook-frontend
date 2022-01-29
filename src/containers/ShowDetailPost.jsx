@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { requestGetPost } from '../_actions/user_action';
 import { get } from '../utils/utils';
 import { loadItem } from '../_services/storage';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ShowDetailPost({ postId }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   dispatch(requestGetPost(postId));
   const data = useSelector(get('getPostData'));
   const userId = loadItem('userId');
@@ -16,12 +17,15 @@ export default function ShowDetailPost({ postId }) {
     );
   }
 
+  const handleEdit = () => {
+    navigate(`/post/${postId}/edit`);
+  }
+
   return (
     <div>
       {Number(data.authorId) === Number(userId) ? (
         <>
-          <Link to="/post/:postId/edit">수정</Link>
-          {/* <Link to="/post/:postId/delete">삭제</Link> */}
+          <button type="button" onClick={handleEdit}>수정</button>
         </>
       ) : (
         <>
@@ -29,7 +33,7 @@ export default function ShowDetailPost({ postId }) {
       )}
       <div>
         <h1>{data.title}</h1>
-        <h5>{data.des}</h5>
+        <h5>{data.description}</h5>
       </div>
       <div>
         <div>
