@@ -138,10 +138,13 @@ export function requestEnrollPost(enrollPostData) {
   }
 }
 
-export function requestEditPost(editPostData) {
+export function requestEditPost(editPostData, postId) {
   return async (dispatch) => {
-    const editData = await putEditPost(editPostData);
-    const { postId } = editData.data;
+    const editData = await putEditPost(editPostData, postId);
+
+    if (!editData) {
+      alert('게시글 수정에 실패했습니다.');
+    }
 
     window.location.href = `/post/${postId}`;
     dispatch(requestGetPost(postId));

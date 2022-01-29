@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestGetPost } from '../_actions/user_action';
+import { requestGetPost, requestEditPost } from '../_actions/user_action';
 import { get } from '../utils/utils';
 import { loadItem, loadObjItem } from '../_services/storage';
 
@@ -95,7 +95,7 @@ export default function EditDetailPost({ postId }) {
       finishLocation,
       tmi
     };
-    // dispatch(requestEditPost(requestBody));
+    dispatch(requestEditPost(requestBody, postId));
   };
 
   return (

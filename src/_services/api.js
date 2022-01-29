@@ -50,3 +50,20 @@ export async function getPost(postId) {
     alert(err.response.data.msg);
   }
 }
+
+export async function putEditPost(editPostData, postId) {
+  const token = loadItem('token');
+
+  try {
+    const url = `api/post/${postId}/edit`;
+    const res = await axios.put(url, editPostData, {
+      headers: {
+        'X-AUTH-TOKEN': token,
+      }
+    });
+    return res.data;
+  }
+  catch(err){
+    alert(err.response.data.msg);
+  }
+}
