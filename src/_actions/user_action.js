@@ -138,6 +138,7 @@ export function requestEnrollPost(enrollPostData) {
   }
 }
 
+// 게시글 수정
 export function requestEditPost(editPostData, postId) {
   return async (dispatch) => {
     const editData = await putEditPost(editPostData, postId);
