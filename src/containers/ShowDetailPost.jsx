@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { requestGetPost } from '../_actions/user_action';
+import {
+  requestGetPost,
+  requestDeletePost
+} from '../_actions/user_action';
 import { get } from '../utils/utils';
 import { loadItem } from '../_services/storage';
 import { useNavigate } from 'react-router-dom';

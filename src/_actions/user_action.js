@@ -3,7 +3,8 @@ import {
   postEnrollPost,
   postSignin,
   postSignup,
-  putEditPost 
+  putEditPost,
+  deletePost
 } from '../_services/api';
 import { clearItem, saveItem, saveObjItem } from '../_services/storage';
 
@@ -149,5 +150,17 @@ export function requestEditPost(editPostData, postId) {
 
     window.location.href = `/post/${postId}`;
     dispatch(requestGetPost(postId));
+  }
+}
+
+// 게시글 삭제
+export function requestDeletePost(postId) {
+  return async (dispatch) => {
+    const deleteData = await deletePost(postId);
+    const { success } = deleteData.data;
+
+    if (success) {
+      alert('해당 게시글을 삭제했습니다.');
+    }
   }
 }
