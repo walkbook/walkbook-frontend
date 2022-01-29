@@ -2,6 +2,11 @@ import Postcard from './Postcard';
 
 export default function PostcardList() {
   return (
-    <Postcard />
+    <Postcard 
+      postId={postId}
+      title={title}
+      authorName={authorName}
+      description={description}
+    />
   )
 }
