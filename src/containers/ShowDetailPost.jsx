@@ -43,6 +43,8 @@ export default function ShowDetailPost({ postId }) {
       <div>
         <h1>{data.title}</h1>
         <h5>{data.description}</h5>
+        <div><button>like</button>2</div>
+        <div>comment 2</div>
       </div>
       <div>
         <div>
