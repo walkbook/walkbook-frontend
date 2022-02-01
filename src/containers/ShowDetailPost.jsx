@@ -6,6 +6,7 @@ import {
 import { get } from '../utils/utils';
 import { loadItem } from '../_services/storage';
 import { useNavigate } from 'react-router-dom';
+import ShowDetailPostComment from '../components/ShowDetailPostComment';
 
 export default function ShowDetailPost({ postId }) {
   const dispatch = useDispatch();
@@ -68,6 +69,7 @@ export default function ShowDetailPost({ postId }) {
           <span>{data.tmi}</span>
         </div>
       </div>
+      <ShowDetailPostComment />
     </div>
   );
 }
