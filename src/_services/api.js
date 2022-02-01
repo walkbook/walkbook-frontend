@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loadItem } from './storage';
+import { loadItem, clearItem } from './storage';
 
 export async function postSignin(signinData) {
   try {
@@ -37,6 +37,10 @@ export async function postEnrollPost(enrollPostData) {
   }
   catch(err) {
     alert(err.response.data.msg);
+    clearItem('token');
+    clearItem('userData');
+    clearItem('userId');
+    window.location.href = '/';
   }
 }
 
@@ -65,6 +69,10 @@ export async function putEditPost(editPostData, postId) {
   }
   catch(err){
     alert(err.response.data.msg);
+    clearItem('token');
+    clearItem('userData');
+    clearItem('userId');
+    window.location.href = '/';
   }
 }
 
@@ -82,6 +90,10 @@ export async function deletePost(postId) {
   }
   catch(err) {
     alert(err.response.data.msg);
+    clearItem('token');
+    clearItem('userData');
+    clearItem('userId');
+    window.location.href = '/';
   }
 }
 
