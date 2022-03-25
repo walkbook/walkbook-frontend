@@ -57,7 +57,6 @@ export function signout() {
 
 export function requestSignin(signinData) {
   return async (dispatch) => {
-    // resSigninData <- res.data (객체) (keys: data, msg, success, token)
     const resSigninData = await postSignin(signinData);
     const userData = resSigninData.data;
     const { userId, nickname } = userData;
@@ -166,7 +165,6 @@ export function requestDeletePost(postId) {
   return async (dispatch) => {
     const { success } = await deletePost(postId);
 
-    console.log(success);
     if (success) {
       alert('해당 게시글을 삭제했습니다.');
     }

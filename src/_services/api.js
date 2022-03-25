@@ -106,4 +106,10 @@ export async function getPostPage(page, size, sort) {
   catch(err) {
     alert(err.response.data.msg);
   }
-} 
+}
+
+export async function fetchSearchedPosts(keyword) {
+  const url = `/api/post/search?keyword=${keyword}`;
+  const res = await axios.get(url);
+  return res.data;
+}
